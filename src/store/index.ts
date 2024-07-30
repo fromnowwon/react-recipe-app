@@ -1,6 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { mealSlice } from "./features/meals/searchSlice";
 import categorySlice from "./features/meals/categorySlice";
+import { ThunkDispatch } from "redux-thunk";
+import { AnyAction } from "redux";
+import { useDispatch } from "react-redux";
 
 export const store = configureStore({
   reducer: {
@@ -9,5 +12,12 @@ export const store = configureStore({
   },
 });
 
-export type RootState = ReturnType<typeof store.getState>;
+// RootState와 AppDispatch 타입 정의
 export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
+
+// Thunk Dispatch 타입 정의
+export type AppThunkDispatch = ThunkDispatch<RootState, void, AnyAction>;
+
+// useAppDispatch 커스텀 훅 정의
+export const useAppDispatch = () => useDispatch<AppThunkDispatch>();
