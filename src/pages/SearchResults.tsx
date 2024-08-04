@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { fetchMealsAsync } from "../store/features/meals/searchSlice";
 import { RootState, useAppDispatch } from "../store";
+import { Link } from "react-router-dom";
 
 export default function SearchResults() {
   const dispatch = useAppDispatch();
@@ -22,17 +23,17 @@ export default function SearchResults() {
 
   return (
     <div>
-      <h1>Search Results</h1>
+      <h2>Search Results</h2>
       {status === "loading" && <p>Loading...</p>}
       {status === "failed" && <p>Error: {error}</p>}
       {status === "succeeded" && meals.length === 0 && <p>No results found.</p>}
       {status === "succeeded" && meals.length > 0 && (
         <div>
           {meals.map((meal) => (
-            <div key={meal.idMeal}>
+            <Link to={`/detail/${meal.idMeal}`} key={meal.idMeal}>
               <h3>{meal.strMeal}</h3>
               <img src={`${meal.strMealThumb}`} alt={meal.strMeal} />
-            </div>
+            </Link>
           ))}
         </div>
       )}

@@ -19,7 +19,6 @@ export default function CategoriList() {
     if (category) {
       dispatch(fetchCategoryListAsync({ category }));
     }
-    console.log(categoryList);
   }, [category, dispatch]);
 
   return (

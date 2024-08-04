@@ -5,12 +5,14 @@ import categoryListSlice from "./features/meals/categoryListSlice";
 import { ThunkDispatch } from "redux-thunk";
 import { AnyAction } from "redux";
 import { useDispatch } from "react-redux";
+import detailSlice from "./features/meals/detailSlice";
 
 export const store = configureStore({
   reducer: {
     categories: categorySlice.reducer,
     categoryList: categoryListSlice.reducer,
     search: mealSlice.reducer,
+    detail: detailSlice.reducer,
   },
 });
 
